@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +42,9 @@ INSTALLED_APPS = [
     'room','single_pages',
 ]
 
+# 사용자 정의 모델을 사용하도록 설정
+AUTH_USER_MODEL = 'login.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,7 +60,8 @@ ROOT_URLCONF = 'dukbookhi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 프로젝트 루트의 templates 디렉터리를 추가
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
